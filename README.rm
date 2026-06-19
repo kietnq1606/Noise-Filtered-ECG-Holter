@@ -1,24 +1,25 @@
-# Holter ECG Monitoring System
-
 ## Overview
 
 This project focuses on the design and development of a Holter-based ECG monitoring system. The system collects ECG data from wearable hardware, stores the recorded signal on an SD card, and supports two-way communication with mobile applications through BLE. The software ecosystem includes mobile applications for users and doctors, as well as a PC application for visualizing ECG signals from BIN files after applying ECG noise-filtering algorithms.
 
-
 ```text
 Holter/
 |-- App/
-|   |-- user_mobile_app/          # Mobile application for end users
-|   `-- visualize_ecg_pc_app/     # PC application for ECG signal visualization
+|   |-- user_mobile_app/
+|   |   `-- lib/                  # Mobile application source code
+|   `-- visualize_ecg_pc_app/
+|       `-- lib/                  # ECG visualization application source code
 |-- Detect_posture/
 |   |-- manual/                   # Notes and manual processing instructions
 |   |-- pipeline/                 # Data analysis and training notebooks
 |   |-- reports/                  # Model training reports
 |   `-- requirements.txt          # Python dependencies
 |-- Node_M_data_aquire/
-|   `-- NODE_M_dataAquire/        # Main data acquisition firmware
+|   `-- NODE_M_dataAquire/
+|       `-- Core/                 # Main data acquisition firmware source code
 |-- Node_S_new_2/
-|   `-- Node_S_new_2/             # Secondary node firmware
+|   `-- Node_S_new_2/
+|       `-- Core/                 # Secondary node firmware source code
 |-- .gitignore
 `-- README.rm
 ```
