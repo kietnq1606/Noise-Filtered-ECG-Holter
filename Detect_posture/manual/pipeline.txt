@@ -1,0 +1,47 @@
+ 2. Pipeline model
+B1: Data validation
+Check số lượng mẫu, số lớp, phân bố label 
+EDA dataset lọc outlier, mising,...
+B2: Preprocessing
+Lọc low-pass nhẹ (4.5Hz)
+	-  Tạo feature
+Windown_size 1s để giảm nhiễu (gom 5 dòng liên tiếp trong cùng 1 tư thế) -> nhiễu quá thì tune lên 1.2-> 2s -> trích xuất feature theo mean, std, min, max, range
+Tính  gia tốc chuyển động acc_mag = sqrt(Ax² + Ay² + Az²) -> mean, std, min, max 
+Đặt trưng chênh lệnh gia tốc giữa 2 cảm biến -> mean, std, max
+Vì hướng của trọng lực tác động lên 2 cảm biến khác nhau nên chuẩn hóa theo từng trục
+Ax_norm = Ax / acc_mag
+Ay_norm = Ay / acc_mag
+Az_norm = Az / acc_mag
+-> Tạo các đặt trưng từ các norm: mean, std
+Đặt trưng góc nghiên
+roll  = atan2(Ay, Az)
+pitch = atan2(-Ax, sqrt(Ay² + Az²))
+-> trong mỗi windown lấy 
+mean(roll)
+std(roll)
+mean(pitch)
+std(pitch)
+Chênh lệch pitch/ roll giữa 2 cảm biến
+Đặt trưng thể hiện độ chênh lệch giữa các trục 
+mean(|Ax - Ay|)
+mean(|Ay - Az|)
+mean(|Az - Ax|)
+std(|Ax - Ay|)
+std(|Ay - Az|)
+std(|Az - Ax|)
+Góc giữa hai vector cảm biến 
+v1 = [Ax1, Ay1, Az1]
+v2 = [Ax2, Ay2, Az2]
+angle = arccos((v1 · v2) / (|v1| |v2|)) 
+Độ thay đổi gia tốc giữa 2 mẫu liên tiếp 
+Jx = Ax[t] - Ax[t-1]
+Jy = Ay[t] - Ay[t-1]
+Jz = Az[t] - Az[t-1]
+jerk_mag = sqrt(Jx² + Jy² + Jz²)
+-> mean, std, max
+	- B3: training model
+Chia train / test
+Standardization 
+Logistic Regression multiclass 
+Tuning hyperparam
+	-> đánh giá bằng F1 vs Acc

@@ -1,0 +1,33 @@
+split_strategy: block
+test_size: 0.2
+selected_C: 10.0
+validation_cv_f1_macro: 0.987844
+train_rows: 3643
+test_rows: 914
+train_label_counts: {0: 661, 1: 616, 2: 677, 3: 421, 4: 656, 5: 612}
+test_label_counts: {0: 166, 1: 154, 2: 170, 3: 106, 4: 164, 5: 154}
+
+accuracy: 0.998906
+f1_macro: 0.998990
+
+classification_report:
+              precision    recall  f1-score   support
+
+           0       1.00      0.99      1.00       166
+           1       1.00      1.00      1.00       154
+           2       1.00      1.00      1.00       170
+           3       1.00      1.00      1.00       106
+           4       0.99      1.00      1.00       164
+           5       1.00      1.00      1.00       154
+
+    accuracy                           1.00       914
+   macro avg       1.00      1.00      1.00       914
+weighted avg       1.00      1.00      1.00       914
+
+confusion_matrix:
+[[165   0   0   0   1   0]
+ [  0 154   0   0   0   0]
+ [  0   0 170   0   0   0]
+ [  0   0   0 106   0   0]
+ [  0   0   0   0 164   0]
+ [  0   0   0   0   0 154]]
